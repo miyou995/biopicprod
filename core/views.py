@@ -67,23 +67,23 @@ class ServiceView(ListView):
     context_object_name ="services"
 ##### DETAIL
 
-############### SOLTUIONS ###############
-##### LIST
-class SolutionsListView(ListView):
-    def get_template_names(self):
-        # if self.request.LANGUAGE_CODE == 'ar':
-        #     return ['rtl/services.html']
-        # else:
-        return ['solutions.html']
-    model = Solution
-    context_object_name ="solutions"
-##### DETAIL
+# ############### SOLTUIONS ###############
+# ##### LIST
+# class SolutionsListView(ListView):
+#     def get_template_names(self):
+#         # if self.request.LANGUAGE_CODE == 'ar':
+#         #     return ['rtl/services.html']
+#         # else:
+#         return ['solutions.html']
+#     model = Solution
+#     context_object_name ="solutions"
+# ##### DETAIL
 
 
-class SolutionsDetailView(DetailView):
-    model = Solution
-    template_name = "solution-detail.html"
-    context_object_name ="solution"
+# class SolutionsDetailView(DetailView):
+#     model = Solution
+#     template_name = "solution-detail.html"
+#     context_object_name ="solution"
 
 
 class ServiceDetail(DetailView):

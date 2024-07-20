@@ -54,16 +54,28 @@ class About(models.Model):
     title               = models.CharField(verbose_name="Titre", max_length=50, blank=True) 
     about_high          = tinymce_models.HTMLField(verbose_name='Text a propos', blank=True, null=True)
     about_low           = tinymce_models.HTMLField(verbose_name='Page a propos 2', blank=True, null=True)
+    
     def __str__(self):
         return str(self.name)
+    
     class Meta:
         verbose_name = 'about'
         verbose_name_plural = 'abouts'
-
+        
+    
+class TeamMember(models.Model):
+    name        = models.CharField(verbose_name="Nom", max_length=60)
+    job_title   = models.CharField(verbose_name="Fonction", max_length=80)
+    image       = models.ImageField(upload_to='images/team/', verbose_name='image')
+    is_active   = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return str(self.name)
 
 class Service(models.Model):
     slug = models.SlugField()
     name                = models.CharField(verbose_name="service title", max_length=100,  blank=True, null=True)
+    ordering            = models.IntegerField(verbose_name=_('Display order'), null=True, blank=True)
     company             = models.ForeignKey(Company, related_name="comapny", on_delete=models.CASCADE,  blank=True, null=True) 
     image_breadcrumb    = models.ImageField(upload_to='images/', verbose_name='breadcrumb image', blank=True, null=True)
     description         = models.CharField(verbose_name="service samll description ", max_length=500,  blank=True, null=True)
@@ -76,6 +88,7 @@ class Service(models.Model):
     def __str__(self):
         return str(self.name)
     class Meta:
+        ordering = ['ordering', '-id']
         verbose_name = 'service'
         verbose_name_plural = 'services'
 
