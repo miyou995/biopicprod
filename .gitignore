@@ -1,9 +1,7 @@
 venv/*
 venv/
 /venv/*
-media/*
-media/
-/media/*
+
 *.scss
 debug.log/*
 debug.log/
@@ -16,7 +14,6 @@ debug.log
 *.pot
 *.pyc
 __pycache__
-media
 backups/*
 # Backup files # 
 *.bak 
