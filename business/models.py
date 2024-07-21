@@ -19,6 +19,12 @@ CHOICES = (
     ('S6' ,'Niveau Universitaire'),
 )
 
+SLIDES_CHOICES = (
+		(1, _("Home page About section")),
+		(2, _("About Page")),
+		(3, _("Contact Page")),
+		# (4, _("Home Slider")),
+	)
 
 class ActiveManager(models.Manager):
     def get_queryset(self):
@@ -98,16 +104,17 @@ class Business(models.Model):
 
 
 class Slide(models.Model):
-    photo      = models.ImageField(verbose_name="Slide haut de page", upload_to='slides/' )
-    is_active  = models.BooleanField(verbose_name='actif', default=True)
-    objects = ActiveManager()
+    image       = models.ImageField(verbose_name="Slide haut de page", upload_to='slides/' )
+    placement    = models.PositiveSmallIntegerField(choices=SLIDES_CHOICES, default=1, verbose_name=_("Slide emplacement"))
+    is_active   = models.BooleanField(verbose_name='actif', default=True)
+    ordering    = models.IntegerField(verbose_name=_('Display order'), null=True, blank=True)
+    objects     = ActiveManager()
 
     class Meta:
         verbose_name = 'slide'
         verbose_name_plural = 'slides'
-    
+        ordering = ['ordering', '-id']
 
     def __str__(self):
         return f"slide id: {self.id}"
     
-

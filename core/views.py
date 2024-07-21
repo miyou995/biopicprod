@@ -37,7 +37,7 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context["home_services"] =  Service.objects.filter(display_on_home=True)
-        context["slides"]   = Slide.objects.filter(is_active=True)
+        context["banner"]   = Slide.objects.filter(placement=1, is_active=True).first()
         context["proofs"]   = Proof.objects.filter(is_active=True)
         context["about"]   = About.objects.first()
         context["portoflio_items"]   = PortfolioItem.objects.filter(is_active=True).select_related('category')
@@ -54,6 +54,7 @@ class AboutView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(AboutView, self).get_context_data(**kwargs)
         context["about"]        = About.objects.first()
+        context["banner"]   = Slide.objects.filter(placement=2, is_active=True).first()
         context["team_members"] = TeamMember.objects.filter(is_active=True)
         return context
 
@@ -113,7 +114,8 @@ class ContactView(SuccessMessageMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super(ContactView, self).get_context_data(**kwargs)
         contact_form = ContactForm
-        context['form'] = contact_form  
+        context['form'] = contact_form 
+        context["banner"]   = Slide.objects.filter(placement=3, is_active=True).first()
         context["services"] = Service.objects.all()
         return context
     def form_valid(self, form):

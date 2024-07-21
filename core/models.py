@@ -208,11 +208,16 @@ class Client(models.Model):
     def __str__(self):  
         return self.name
     
+    class Meta:
+        ordering = ['ordering', '-id']
+        
 class Proof(models.Model):
     number = models.CharField(_("Chiffre"), max_length=50)
     text = models.TextField(_("Achievment detail"))
     ordering = models.IntegerField(verbose_name=_('Display order'), null=True, blank=True)
     is_active = models.BooleanField(_("Activer le client"), default=True)
-
+    
+    class Meta:
+        ordering = ['ordering', '-id']
     def __str__(self):  
         return self.number

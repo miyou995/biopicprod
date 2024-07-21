@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block content %}
-{% include 'snippets/breadcrumb.html' %}
+{% include 'snippets/breadcrumb.html' with page_title="About" %}
 
 
     <main class="page-wrapper">
@@ -13,7 +13,7 @@
                     <div class="row row--35 align-items-center">
                         <div class="col-lg-5 col-md-12">
                             <div class="thumbnail">
-                                <img class="w-100" src="{{about.image_high.url}}" alt="About {{business.name}} Images" />
+                                <img class="w-100" src="{{banner.image.url}}" alt="About {{business.name}} Images" />
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-12">
@@ -28,7 +28,6 @@
                                             {{about.about_low|safe}}
                                         </div>
                                     </div>
-                                   
                                 </div>
                             </div>
                         </div>
@@ -75,7 +74,6 @@
         </div>
 
 
-
         <div class="rn-team-area rn-section-gap bg_color--1">
             <div class="container">
                 <div class="row">
@@ -113,46 +111,6 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="rn-brand-area brand-separation">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="brand-style-2">
-                            <li>
-                                <img src="assets/images/brand/brand-01.png" alt="Logo Images" />
-                            </li>
-                            <li>
-                                <img src="assets/images/brand/brand-02.png" alt="Logo Images" />
-                            </li>
-                            <li>
-                                <img src="assets/images/brand/brand-03.png" alt="Logo Images" />
-                            </li>
-                            <li>
-                                <img src="assets/images/brand/brand-04.png" alt="Logo Images" />
-                            </li>
-                            <li>
-                                <img src="assets/images/brand/brand-05.png" alt="Logo Images" />
-                            </li>
-                            <li>
-                                <img src="assets/images/brand/brand-06.png" alt="Logo Images" />
-                            </li>
-                            <li>
-                                <img src="assets/images/brand/brand-02.png" alt="Logo Images" />
-                            </li>
-                            <li>
-                                <img src="assets/images/brand/brand-03.png" alt="Logo Images" />
-                            </li>
-                            <li>
-                                <img src="assets/images/brand/brand-04.png" alt="Logo Images" />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
     </main>
 {% endblock content %}
