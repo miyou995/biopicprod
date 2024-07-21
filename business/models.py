@@ -20,11 +20,9 @@ CHOICES = (
 )
 
 
-
-
 class ActiveManager(models.Manager):
     def get_queryset(self):
-        return super(ActiveManager, self).get_queryset().filter(actif=True)
+        return super(ActiveManager, self).get_queryset().filter(is_active=True)
 
 
 class Business(models.Model):
@@ -79,7 +77,7 @@ class Business(models.Model):
     banner_maintext_color   = ColorField(format='hexa', default="#ffffff", verbose_name=_('Banner main text color'), blank=True, null=True)
     
 
-    # actif  = models.BooleanField(verbose_name='Active', default=False)
+    # is_active  = models.BooleanField(verbose_name='Active', default=False)
     # is_big  = models.BooleanField(verbose_name='Grande photo (1920 x 570)', default=False)
     # is_small  = models.BooleanField(verbose_name='Medium photo (720 x 540)', default=False)
     def __str__(self):
@@ -98,13 +96,10 @@ class Business(models.Model):
                 self.id != model.objects.get().id):
             raise ValidationError("Vous ne pouvez pas rajouter une autre entreprise")
 
-class ActiveManager(models.Manager):
-    def active(self):
-        return self.filter(active=True)
 
 class Slide(models.Model):
     photo      = models.ImageField(verbose_name="Slide haut de page", upload_to='slides/' )
-    actif  = models.BooleanField(verbose_name='actif', default=True)
+    is_active  = models.BooleanField(verbose_name='actif', default=True)
     objects = ActiveManager()
 
     class Meta:

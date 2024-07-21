@@ -24,7 +24,7 @@
     <meta property="og:type" content="Services" />
     <meta property="og:site_name" content="{{business.name}} | {{business.title}}"/>
     <title>{{business.title}}</title>
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{{business.favicon.url}}">
 
     <!-- CSS
 	============================================ -->
@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="{% static 'css/vendor/lightbox.css' %}">
     <link rel="stylesheet" href="{% static 'css/plugins/plugins.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://unpkg.com/htmx.org@2.0.1"></script>
 
 </head>
 
@@ -49,8 +50,7 @@
         {% include 'snippets/footer.html' %}
     </div>
 
-    <!-- JS
-============================================ -->
+    <!-- JS ============================================ -->
     <!-- Modernizer JS -->
     <script src="{% static 'js/vendor/modernizr.min.js' %}"></script>
     <!-- jQuery JS -->
@@ -65,7 +65,11 @@
     <script src="{% static 'js/plugins/plugins.min.js' %}"></script>
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
-
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        })
+    </script>
 
 </body>
 

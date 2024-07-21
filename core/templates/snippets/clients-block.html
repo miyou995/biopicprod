@@ -1,0 +1,7 @@
+<ul class="brand-style-2">
+    {% for client in clients %}
+        <li>
+            <img src="{{client.logo.url}}" alt="Logo Images {{client.name}}" />
+        </li>
+    {% endfor %}
+</ul>

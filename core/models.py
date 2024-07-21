@@ -20,30 +20,6 @@ CHOICES = (
     ('S6' ,'Niveau Universitaire'),
 )
 
-class Company(models.Model):
-    name            = models.CharField('Name', max_length=500)
-    slug            = models.SlugField(max_length=150, unique=True, verbose_name=_("URL"))
-    phone           = models.CharField(verbose_name="Téléphone" , max_length=25, null=True, blank=True)
-    email           = models.EmailField(verbose_name="email", max_length=50, blank=True)
-    image_one       = models.ImageField(upload_to='images/', verbose_name='image_detail_1', blank=True, null=True)
-    order           = models.IntegerField(verbose_name=_('Display order'), null=True, blank=True)
-    image_two       = models.ImageField(upload_to='images/', verbose_name="image_2", blank=True, null=True)
-    about_one       = tinymce_models.HTMLField(verbose_name='Text service', blank=True, null=True)
-    about_two       = tinymce_models.HTMLField(verbose_name='Page service ', blank=True, null=True)
-
-    def __str__(self):
-        return str(self.name)
-    
-    def get_absolute_url(self):
-        return reverse("core:service_detail", kwargs={"slug": self.slug})
-    
-class CompanyItem(models.Model):
-    company         = models.ForeignKey(Company, related_name="items", on_delete=models.CASCADE) 
-    name            = models.CharField(max_length=180, blank=True, null=True)
-    description     = models.TextField(blank=True, null=True)
-
-
-
 
 class About(models.Model):
     name                = models.CharField(verbose_name="Nom de l'entreprise", max_length=100,  blank=True, null=True)
@@ -68,25 +44,30 @@ class TeamMember(models.Model):
     job_title   = models.CharField(verbose_name="Fonction", max_length=80)
     image       = models.ImageField(upload_to='images/team/', verbose_name='image')
     is_active   = models.BooleanField(default=True)
+    instagram   = models.URLField(verbose_name="Instagram", blank=True, null=True)
+    linkedin    = models.URLField(verbose_name="Linkedin", blank=True, null=True)
+    facebook    = models.URLField(verbose_name="Facebook", blank=True, null=True)
     
     def __str__(self):
         return str(self.name)
 
 class Service(models.Model):
-    slug = models.SlugField()
-    name                = models.CharField(verbose_name="service title", max_length=100,  blank=True, null=True)
+    name                = models.CharField(verbose_name="service title", max_length=100,)
+    slug                = models.SlugField(unique=True, verbose_name='URL', max_length=110)
     ordering            = models.IntegerField(verbose_name=_('Display order'), null=True, blank=True)
-    company             = models.ForeignKey(Company, related_name="comapny", on_delete=models.CASCADE,  blank=True, null=True) 
+    display_on_home     = models.BooleanField(verbose_name=_('Display on home page'), default=False)
+    description         = models.TextField(verbose_name="service samll description ", blank=True, null=True)
     image_breadcrumb    = models.ImageField(upload_to='images/', verbose_name='breadcrumb image', blank=True, null=True)
-    description         = models.CharField(verbose_name="service samll description ", max_length=500,  blank=True, null=True)
+    icon                = models.FileField(upload_to='images/', verbose_name='icon', blank=True, null=True)
     image               = models.ImageField(upload_to='images/', verbose_name='image du service', blank=True, null=True)
     image_high          = models.ImageField(upload_to='images/', verbose_name='image_detail_1', blank=True, null=True)
     image_low           = models.ImageField(upload_to='images/', verbose_name="image_detail_2", blank=True, null=True)
-    about_high          = tinymce_models.HTMLField(verbose_name='Text service', blank=True, null=True)
-    about_low           = tinymce_models.HTMLField(verbose_name='Page service ', blank=True, null=True)
+    full_description_1  = tinymce_models.HTMLField(verbose_name='full Text service 1', blank=True, null=True)
+    full_description_2  = tinymce_models.HTMLField(verbose_name='full Text service 2', blank=True, null=True)
     
     def __str__(self):
         return str(self.name)
+    
     class Meta:
         ordering = ['ordering', '-id']
         verbose_name = 'service'
@@ -105,6 +86,7 @@ class Contact(models.Model):
     service         = models.ForeignKey(Service, verbose_name='service', null=True, blank=True, on_delete=models.SET_NULL)
     subject         = models.CharField(max_length=150, verbose_name='sujet', null=True, blank=True)
     message         = models.TextField(null=True, blank=True)
+    
     class Meta:
         verbose_name = _("contact")
         verbose_name_plural = _("contact")
@@ -115,9 +97,7 @@ class Contact(models.Model):
     def get_absolute_url(self):
         return reverse("core:contact", kwargs={"pk": self.pk})
     
-
-
-
+    
 
    
 class Hiring(models.Model):
@@ -148,8 +128,9 @@ class Hiring(models.Model):
 class Quote(models.Model):
     email       = models.EmailField(verbose_name="E-mail")
     phone       = models.CharField(verbose_name="Téléphone" , max_length=25) 
-    entreprise      = models.CharField(max_length=150, verbose_name="Nom de l'entreprise", null=True, blank=True)
-    service         = models.ForeignKey(Service, verbose_name='service', null=True, blank=True, on_delete=models.CASCADE)
+    entreprise  = models.CharField(max_length=150, verbose_name="Nom de l'entreprise", null=True, blank=True)
+    service     = models.ForeignKey(Service, verbose_name='service', null=True, blank=True, on_delete=models.CASCADE)
+    
     class Meta:
         verbose_name = _("quote")
         verbose_name_plural = _("quotes")
@@ -179,3 +160,59 @@ class Solution(models.Model):
     
     def get_absolute_url(self):
         return reverse("core:solution_detail", kwargs={"slug": self.slug})
+    
+    
+
+
+class ProtfolioCategory(models.Model):
+    name = models.CharField(_("Nom de la categorie"), max_length=50)
+    slug = models.SlugField(max_length=150, unique=True, verbose_name=_("URL"))
+    description = models.TextField(_("Description de la categorie"), blank=True, null=True)
+    is_active = models.BooleanField(_("Activer la categorie"), default=True)
+    class Meta:
+        verbose_name = _("Categorie de portfolio")
+        verbose_name_plural = _("Portfolio")
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse("core:portfolio_category", kwargs={"slug": self.slug})
+    
+class PortfolioItem(models.Model):
+    category        = models.ForeignKey(ProtfolioCategory, verbose_name='categorie', related_name="portfolio_items", null=True, blank=True, on_delete=models.SET_NULL)
+    name            = models.CharField(_("Nom de l'item"), max_length=50)
+    video_url       = models.URLField(_("URL de la video"), blank=True, null=True)
+    image           = models.ImageField(upload_to='images/portfolio', verbose_name=_("Image de l'item"), blank=True, null=True)
+    description     = models.TextField(_("Description de l'item"), blank=True, null=True)
+    is_active       = models.BooleanField(_("Activer l'item"), default=True)
+    display_on_home = models.BooleanField(verbose_name=_('Display on home page'), default=False)
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse("core:portfolio_item", kwargs={"pk": self.pk})
+    
+    @property
+    def is_video(self):
+        return self.video_url != None
+    
+    
+    
+class Client(models.Model):
+    name = models.CharField(_("Nom du client"), max_length=50)
+    logo = models.ImageField(upload_to='images/clients', verbose_name=_("Logo du client"))
+    ordering = models.IntegerField(verbose_name=_('Display order'), null=True, blank=True)
+    is_active = models.BooleanField(_("Activer le client"), default=True)
+    
+    def __str__(self):  
+        return self.name
+    
+class Proof(models.Model):
+    number = models.CharField(_("Chiffre"), max_length=50)
+    text = models.TextField(_("Achievment detail"))
+    ordering = models.IntegerField(verbose_name=_('Display order'), null=True, blank=True)
+    is_active = models.BooleanField(_("Activer le client"), default=True)
+
+    def __str__(self):  
+        return self.number

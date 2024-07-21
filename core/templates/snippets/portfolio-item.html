@@ -1,0 +1,26 @@
+
+{% if p_item.is_video %}
+    {% comment %} <a class="gallery masonry_item portfolio-33-33 cat--{{item.category.id}}" href="{% url 'core:portfolio' %}"> {% endcomment %}
+        <div class="thumbnail position-relative">
+            {% if p_item.image %}
+                <img  class="w-100" src="{{p_item.image.url}}" alt="Portfolio Images">
+            {% endif %}
+            <a class="video-popup position-top-center play__btn" href="{{p_item.video_url}}">
+                <span class="play-icon"></span>
+            </a>
+        </div>
+    {% comment %} </a> {% endcomment %}
+{% else %}
+    <a class="item-portfolio-static gallery masonry_item portfolio-33-33 cat--{{item.category.id}}" href="{{p_item.image.url}}">
+        <div class="portfolio-static">
+            <div class="thumbnail-inner">
+                <div class="thumbnail">
+                    {% if p_item.image %}
+                        <img src="{{p_item.image.url}}" alt="Portfolio Images">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </a>
+{% endif %}
+

@@ -7,7 +7,7 @@ from .models import Service , Solution
 
 
 class ServiceTranslationOptions(TranslationOptions):
-     fields =('name','about_high')
+     fields =('name','description', 'full_description_1', 'full_description_2')
 
 translator.register(Service,ServiceTranslationOptions)
 

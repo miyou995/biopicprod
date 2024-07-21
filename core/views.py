@@ -10,7 +10,7 @@ from django.contrib import messages
 from config import settings 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from business.models import  Slide
-from core.models import Service, Contact, Quote, Hiring,About, Company, Solution
+from core.models import Client, Service, Proof, Contact, Quote, Hiring,About, ProtfolioCategory, PortfolioItem, TeamMember
 from core.forms import ContactForm, QuoteForm, HiringForm
 from django.shortcuts import redirect
 # from django.utils.translation import LANGUAGE_SESSION_KEY
@@ -23,6 +23,9 @@ from django.conf import settings
 from django.views.decorators.cache import never_cache
 
 
+
+
+
 ############### INDEX ###############
 class IndexView(TemplateView):
     def get_template_names(self):
@@ -30,17 +33,15 @@ class IndexView(TemplateView):
         #     return ['rtl/index.html']
         # else:
         return ['index.html']
+    
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context["services_one"] =  Service.objects.filter(company__order=1)
-        print('cccccc', Service.objects.filter(company__order=1))
-        context["services_two"] =  Service.objects.filter(company__order=2)
-        context["slides"]   = Slide.objects.filter(actif=True)
-        first_company = Company.objects.first()
-        context["company_first"]   = Company.objects.first()
-        context["company_second"]   = None
-        if first_company:
-            context["company_second"]   = Company.objects.exclude(id=first_company.id).last()
+        context["home_services"] =  Service.objects.filter(display_on_home=True)
+        context["slides"]   = Slide.objects.filter(is_active=True)
+        context["proofs"]   = Proof.objects.filter(is_active=True)
+        context["about"]   = About.objects.first()
+        context["portoflio_items"]   = PortfolioItem.objects.filter(is_active=True).select_related('category')
+        
         return context
 
 ############### ABOUT ###############
@@ -52,7 +53,8 @@ class AboutView(TemplateView):
         return ['about.html']
     def get_context_data(self, **kwargs):
         context = super(AboutView, self).get_context_data(**kwargs)
-        context["abouts"] =About.objects.all()
+        context["about"]        = About.objects.first()
+        context["team_members"] = TeamMember.objects.filter(is_active=True)
         return context
 
 ############### SERVICES ###############
@@ -65,26 +67,24 @@ class ServiceView(ListView):
         return ['services.html']
     model = Service
     context_object_name ="services"
-##### DETAIL
-
-# ############### SOLTUIONS ###############
-# ##### LIST
-# class SolutionsListView(ListView):
-#     def get_template_names(self):
-#         # if self.request.LANGUAGE_CODE == 'ar':
-#         #     return ['rtl/services.html']
-#         # else:
-#         return ['solutions.html']
-#     model = Solution
-#     context_object_name ="solutions"
-# ##### DETAIL
 
 
-# class SolutionsDetailView(DetailView):
-#     model = Solution
-#     template_name = "solution-detail.html"
-#     context_object_name ="solution"
-
+############### PORTFOLIO ###############
+##### LIST
+class PortfolioView(ListView):
+    def get_template_names(self):
+        # if self.request.LANGUAGE_CODE == 'ar':
+        #     return ['rtl/services.html']
+        # else:
+        return ['portfolio.html']
+    model = PortfolioItem
+    context_object_name ="portfolio_items"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["portfolio_categories"] =  ProtfolioCategory.objects.prefetch_related('portfolio_items').all()
+        return context
+    
 
 class ServiceDetail(DetailView):
     model = Service
@@ -181,34 +181,27 @@ class RecruitingView(SuccessMessageMixin, CreateView):
 
 
 
-from django.shortcuts import render
-
-# def contact(request, language):
-#     template_name = f'contact_{language}.html'
-#     return render(request, template_name)
-
-# def hiring(request, language):
-#     template_name = f'hiring_{language}.html'
-#     return render(request, template_name)
-# def index(request, language):
-#     template_name = f'index_{language}.html'
-#     return render(request, template_name)
-# def about(request, language):
-#     template_name = f'about_{language}.html'
-#     return render(request, template_name)
-# def services(request, language):
-#     template_name = f'services_{language}.html'
-#     return render(request, template_name)
-# @never_cache
-# def switch_language(request):
-#     if request.method == 'POST':
-#         selected_language = request.POST.get('language')
-#         print(f"Selected Language: {selected_language}")
-#         request.session['language'] = selected_language
-#     return redirect(request.META.get('HTTP_REFERER'))
 
 
 
+############### Clients ###############
+##### LIST
+class ClientListHTMXView(ListView):
+    def get_template_names(self):
+        # if self.request.LANGUAGE_CODE == 'ar':
+        #     return ['rtl/services.html']
+        # else:
+        return ['snippets/clients-block.html']
+    model = Client
+    context_object_name ="clients"
+    
 
-
-
+    
+class PortfolioView(TemplateView):
+    template_name = 'portfolio.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["portfolio_items"] =  PortfolioItem.objects.select_related('category').all()
+        context["portoflio_categories"] =  ProtfolioCategory.objects.prefetch_related('portfolio_items').all()
+        return context

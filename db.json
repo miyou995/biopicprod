@@ -187,7 +187,7 @@
     "pk": 1,
     "fields": {
         "photo": "slides/001254.png",
-        "actif": true
+        "is_active": true
     }
 },
 {
@@ -195,7 +195,7 @@
     "pk": 2,
     "fields": {
         "photo": "slides/securite-cynophile-2-1.png",
-        "actif": true
+        "is_active": true
     }
 },
 {
