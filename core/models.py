@@ -64,7 +64,8 @@ class Service(models.Model):
     image_low           = models.ImageField(upload_to='images/', verbose_name="image_detail_2", blank=True, null=True)
     full_description_1  = tinymce_models.HTMLField(verbose_name='full Text service 1', blank=True, null=True)
     full_description_2  = tinymce_models.HTMLField(verbose_name='full Text service 2', blank=True, null=True)
-    
+    created      = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
     def __str__(self):
         return str(self.name)
     
@@ -86,7 +87,8 @@ class Contact(models.Model):
     service         = models.ForeignKey(Service, verbose_name='service', null=True, blank=True, on_delete=models.SET_NULL)
     subject         = models.CharField(max_length=150, verbose_name='sujet', null=True, blank=True)
     message         = models.TextField(null=True, blank=True)
-    
+    created      = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
     class Meta:
         verbose_name = _("contact")
         verbose_name_plural = _("contact")
@@ -99,7 +101,7 @@ class Contact(models.Model):
     
     
 
-   
+
 class Hiring(models.Model):
     name        = models.CharField(max_length=150, verbose_name='Nom')
     email       = models.EmailField(verbose_name="E-mail", null=True, blank=True)
@@ -112,14 +114,15 @@ class Hiring(models.Model):
     army        = models.BooleanField(verbose_name='Service militaire', default=False)
     message     = models.TextField(verbose_name='Experience', null=True, blank=True)
     cv_file     = models.FileField(upload_to='media', verbose_name='CV', null=True, blank=True)
-
+    created      = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
     class Meta:
         verbose_name = _("hiring")
         verbose_name_plural = _("hirings")
     
     def __str__(self):
         return str(self.email)
-  
+
 
     def get_absolute_url(self):
         return reverse("core:hiring", kwargs={"pk": self.pk})
@@ -130,7 +133,8 @@ class Quote(models.Model):
     phone       = models.CharField(verbose_name="Téléphone" , max_length=25) 
     entreprise  = models.CharField(max_length=150, verbose_name="Nom de l'entreprise", null=True, blank=True)
     service     = models.ForeignKey(Service, verbose_name='service', null=True, blank=True, on_delete=models.CASCADE)
-    
+    created      = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
     class Meta:
         verbose_name = _("quote")
         verbose_name_plural = _("quotes")
@@ -154,7 +158,8 @@ class Solution(models.Model):
     text        = models.TextField(verbose_name="petit texte", blank=True, null=True)
     is_active   = models.BooleanField(_("Activer la solution"), default=True)
     description = tinymce_models.HTMLField(verbose_name='Description du service', blank=True, null=True)
-
+    created      = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
     def __str__(self):
         return self.name
     
@@ -169,6 +174,7 @@ class ProtfolioCategory(models.Model):
     slug = models.SlugField(max_length=150, unique=True, verbose_name=_("URL"))
     description = models.TextField(_("Description de la categorie"), blank=True, null=True)
     is_active = models.BooleanField(_("Activer la categorie"), default=True)
+    
     class Meta:
         verbose_name = _("Categorie de portfolio")
         verbose_name_plural = _("Portfolio")
@@ -186,7 +192,8 @@ class PortfolioItem(models.Model):
     description     = models.TextField(_("Description de l'item"), blank=True, null=True)
     is_active       = models.BooleanField(_("Activer l'item"), default=True)
     display_on_home = models.BooleanField(verbose_name=_('Display on home page'), default=False)
-    
+    created      = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
     def __str__(self):
         return self.name
     

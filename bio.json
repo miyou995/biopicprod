@@ -1,0 +1,317 @@
+[
+	{
+		"model": "core.about",
+		"pk": 2,
+		"fields": {
+			"name": "BioPic Prod",
+			"image_breadcrumb": "",
+			"brochure": "",
+			"image_high": "images/430x520.png",
+			"image_low": "images/430x520.png",
+			"title": "Société de production Audiovisuelle",
+			"about_high": "<p style=\"text-align: left;\">SARL BIOPIC PROD est une soci&eacute;t&eacute; d&rsquo;&eacute;dition de tous les services audiovisuels et de production cin&eacute;matographique.</p>",
+			"about_low": "<h3>Notre Vision</h3>\r\n<p style=\"text-align: left;\">Am&eacute;liorer l&rsquo;exp&eacute;rience de marque &agrave; travers la communication audiovisuelle.<br /><br />Vous accompagnez dans tous les &eacute;tapes de vos projets.</p>"
+		}
+	},
+	{
+		"model": "core.teammember",
+		"pk": 1,
+		"fields": {
+			"name": "John Riad",
+			"job_title": "Gérant",
+			"image": "images/team/600-800.png",
+			"is_active": true,
+			"instagram": null,
+			"linkedin": null,
+			"facebook": null
+		}
+	},
+	{
+		"model": "core.teammember",
+		"pk": 2,
+		"fields": {
+			"name": "Sidahmed",
+			"job_title": "Photograph",
+			"image": "images/team/300x500.png",
+			"is_active": true,
+			"instagram": null,
+			"linkedin": null,
+			"facebook": null
+		}
+	},
+	{
+		"model": "core.teammember",
+		"pk": 3,
+		"fields": {
+			"name": "Mourad",
+			"job_title": "Agent de sécurité",
+			"image": "images/team/300x500_S49sxUD.png",
+			"is_active": true,
+			"instagram": null,
+			"linkedin": null,
+			"facebook": null
+		}
+	},
+	{
+		"model": "core.service",
+		"pk": 8,
+		"fields": {
+			"name": "Capture vidéo",
+			"name_en": "Capture vidéo",
+			"name_ar": null,
+			"name_fr": null,
+			"slug": "capture-video",
+			"ordering": null,
+			"display_on_home": true,
+			"description": null,
+			"description_en": null,
+			"description_ar": null,
+			"description_fr": null,
+			"image_breadcrumb": "",
+			"icon": "",
+			"image": "",
+			"image_high": "",
+			"image_low": "",
+			"full_description_1": null,
+			"full_description_1_en": null,
+			"full_description_1_ar": null,
+			"full_description_1_fr": null,
+			"full_description_2": null,
+			"full_description_2_en": null,
+			"full_description_2_ar": null,
+			"full_description_2_fr": null,
+			"created": "2024-07-22T08:51:12.842Z",
+			"updated": "2024-07-22T08:51:12.848Z"
+		}
+	},
+	{
+		"model": "core.service",
+		"pk": 9,
+		"fields": {
+			"name": "Capture Photos",
+			"name_en": "Capture Photos",
+			"name_ar": null,
+			"name_fr": null,
+			"slug": "capture-photos",
+			"ordering": null,
+			"display_on_home": true,
+			"description": "BioPic Corporate\r\nPhotographie de Réalité Virtuelle (VR)\r\nLa Photographie commerciale (publicités, produits, immobilier…)",
+			"description_en": "BioPic Corporate\r\nPhotographie de Réalité Virtuelle (VR)\r\nLa Photographie commerciale (publicités, produits, immobilier…)",
+			"description_ar": null,
+			"description_fr": null,
+			"image_breadcrumb": "",
+			"icon": "images/protein-svgrepo-com.svg",
+			"image": "",
+			"image_high": "",
+			"image_low": "",
+			"full_description_1": null,
+			"full_description_1_en": null,
+			"full_description_1_ar": null,
+			"full_description_1_fr": null,
+			"full_description_2": null,
+			"full_description_2_en": null,
+			"full_description_2_ar": null,
+			"full_description_2_fr": null,
+			"created": "2024-07-22T08:51:12.842Z",
+			"updated": "2024-07-22T08:51:12.848Z"
+		}
+	},
+	{
+		"model": "core.solution",
+		"pk": 1,
+		"fields": {
+			"name": "Video Surveillance",
+			"name_en": "Video Surveillance",
+			"name_ar": null,
+			"name_fr": null,
+			"slug": "vid",
+			"title": "Video Surveillance",
+			"title_en": "Video Surveillance",
+			"title_ar": null,
+			"title_fr": null,
+			"icon": "images/solutions/Screenshot_from_2024-07-11_12-08-33.png",
+			"banner": "",
+			"text": "HT2S offers video surveillance solutions tailored to all types of sites, ensuring effective monitoring for businesses and individuals (ERP/IHG/industrial/domestic).",
+			"text_en": "HT2S offers video surveillance solutions tailored to all types of sites, ensuring effective monitoring for businesses and individuals (ERP/IHG/industrial/domestic).",
+			"text_ar": null,
+			"text_fr": null,
+			"is_active": true,
+			"description": null,
+			"description_en": null,
+			"description_ar": null,
+			"description_fr": null,
+			"created": "2024-07-22T08:51:12.854Z",
+			"updated": "2024-07-22T08:51:12.859Z"
+		}
+	},
+	{
+		"model": "core.protfoliocategory",
+		"pk": 1,
+		"fields": { "name": "Capture video", "slug": "capture-video", "description": "", "is_active": true }
+	},
+	{
+		"model": "core.protfoliocategory",
+		"pk": 2,
+		"fields": { "name": "Portrait", "slug": "portrait", "description": "joli joli", "is_active": true }
+	},
+	{
+		"model": "core.portfolioitem",
+		"pk": 1,
+		"fields": {
+			"category": 1,
+			"name": "CIC 2041",
+			"video_url": "https://www.youtube.com/watch?v=V7Gbz0UV0kc",
+			"image": "images/portfolio/500x400_GJENXpx.png",
+			"description": "en 2024 bala bla",
+			"is_active": true,
+			"display_on_home": true,
+			"created": "2024-07-22T08:51:12.819Z",
+			"updated": "2024-07-22T08:51:12.824Z"
+		}
+	},
+	{
+		"model": "core.portfolioitem",
+		"pk": 2,
+		"fields": {
+			"category": 1,
+			"name": "Crescendo school fin d'année",
+			"video_url": "https://www.youtube.com/watch?v=zHUW828HJRY",
+			"image": "images/portfolio/500x400_a24FVT8.png",
+			"description": "",
+			"is_active": true,
+			"display_on_home": true,
+			"created": "2024-07-22T08:51:12.819Z",
+			"updated": "2024-07-22T08:51:12.824Z"
+		}
+	},
+	{
+		"model": "core.portfolioitem",
+		"pk": 3,
+		"fields": {
+			"category": 2,
+			"name": "Adbelmajid tebboun",
+			"video_url": null,
+			"image": "images/portfolio/500x400.png",
+			"description": "",
+			"is_active": true,
+			"display_on_home": true,
+			"created": "2024-07-22T08:51:12.819Z",
+			"updated": "2024-07-22T08:51:12.824Z"
+		}
+	},
+	{
+		"model": "core.client",
+		"pk": 1,
+		"fields": { "name": "Octopus", "logo": "images/clients/biopicfav.jpg", "ordering": 1, "is_active": true }
+	},
+	{
+		"model": "core.client",
+		"pk": 2,
+		"fields": { "name": "bio", "logo": "images/clients/logo-octopus.png", "ordering": null, "is_active": true }
+	},
+	{
+		"model": "core.proof",
+		"pk": 1,
+		"fields": { "number": "63", "text": "client en une semain", "ordering": 1, "is_active": true }
+	},
+	{
+		"model": "core.proof",
+		"pk": 2,
+		"fields": { "number": "99999", "text": "photo prise en une journée", "ordering": 2, "is_active": true }
+	},
+	{
+		"model": "core.proof",
+		"pk": 3,
+		"fields": { "number": "8520", "text": "millards de materiel", "ordering": null, "is_active": true }
+	},
+	{
+		"model": "business.business",
+		"pk": 1,
+		"fields": {
+			"name": "Biopic Prod",
+			"logo": "images/logos/biopiclogo.png",
+			"logo_negatif": "images/slides/biopiclogo.png",
+			"favicon": "images/logos/biopicfav.jpg",
+			"title": "production Audiovisuelle",
+			"address": "",
+			"address_link": "",
+			"email": "contact@biopicprod.com",
+			"email2": "",
+			"phone": "+213 540 786 049",
+			"phone2": "+213 556 533 801",
+			"phone3": "",
+			"work_start": "08:30:00",
+			"work_end": "17:30:00",
+			"about": "<p>SARL BIOPIC PROD est une soci&eacute;t&eacute; d'&eacute;dition de tous les services audiovisuels et de production cin&eacute;matographique.</p>\r\n<p>Notre Vision&nbsp;</p>\r\n<p>Am&eacute;liorer l'exp&eacute;rience de marque &agrave; travers la communication audiovisuelle.</p>\r\n<p>Vous accompagner dasn toutes les &eacute;tapes de vos projets.</p>",
+			"conditions": "",
+			"mini_about": "",
+			"facebook": "https://www.facebook.com/sarlbiopicprod",
+			"instagram": "https://www.facebook.com/sarlbiopicprod",
+			"tiktok": null,
+			"twitter": null,
+			"linkedin": null,
+			"youtube": null,
+			"chat_code": "",
+			"pixel": "",
+			"analytics": "",
+			"meta_title": null,
+			"meta_description": "",
+			"meta_keyword": null,
+			"contact_message": "",
+			"google_maps": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51328.26146503337!2d2.7589913942712645!3d36.4813213821967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128f0c66865a4cd1%3A0xccfcf9c073646dfe!2sBlida!5e0!3m2!1sen!2sdz!4v1717425506444!5m2!1sen!2sdz\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+			"theme_color": "#DB2445FF",
+			"theme_text_color": "#FFFFFFFF",
+			"header_color": "#FFFFFFFF",
+			"header_hover_color": "#AB257BFF",
+			"header_text_color": "#000000FF",
+			"footer_color": "#CC0606FF",
+			"footer_text_color": "#FFFFFFFF",
+			"buttons_color": "#011627FF",
+			"buttons_hover_color": "#067FE15F",
+			"buttons_text_color": "#FFFFFFFF",
+			"banner_color": "#FFE4928B",
+			"banner_text_color": "#1241FFFF",
+			"banner_maintext_color": "#FFE492FF"
+		}
+	},
+	{
+		"model": "business.slide",
+		"pk": 3,
+		"fields": { "image": "slides/Azienda_1.jpg", "placement": 1, "is_active": true, "ordering": null }
+	},
+	{
+		"model": "business.slide",
+		"pk": 4,
+		"fields": { "image": "slides/400x600.png", "placement": 1, "is_active": true, "ordering": null }
+	},
+	{
+		"model": "business.slide",
+		"pk": 5,
+		"fields": { "image": "slides/400x600_InqJPvr.png", "placement": 2, "is_active": true, "ordering": null }
+	},
+	{
+		"model": "business.slide",
+		"pk": 6,
+		"fields": { "image": "slides/400x600_6aAQYm9.png", "placement": 3, "is_active": true, "ordering": null }
+	},
+	{
+		"model": "auth.user",
+		"pk": 1,
+		"fields": {
+			"password": "pbkdf2_sha256$600000$St28CkcV9a4AN6wd3FpiJD$cwPMsbUhWlRH0Y6++6gu8qtoE6fI/OHbq5o0Ux4cfI4=",
+			"last_login": "2024-07-21T21:35:43.082Z",
+			"is_superuser": true,
+			"username": "admin",
+			"first_name": "",
+			"last_name": "",
+			"email": "",
+			"is_staff": true,
+			"is_active": true,
+			"date_joined": "2024-05-30T10:19:39.942Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	},
+
+	{ "model": "sites.site", "pk": 1, "fields": { "domain": "biopicprod.com", "name": "biopicprod.com" } }
+]
